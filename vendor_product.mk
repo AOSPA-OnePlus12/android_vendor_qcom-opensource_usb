@@ -14,7 +14,11 @@ PRODUCT_PROPERTY_OVERRIDES += vendor.usb.dpl.inst.name=dpl
 
 ifneq ($(filter blair monaco pitti,$(TARGET_BOARD_PLATFORM)),)
   PRODUCT_PROPERTY_OVERRIDES += vendor.usb.controller=4e00000.dwc3
-else
+else ifneq ($(filter msm8998 sdm660,$(TARGET_BOARD_PLATFORM)),)
+  PRODUCT_PROPERTY_OVERRIDES += vendor.usb.controller=a800000.dwc3
+else ifneq ($(filter msm8953,$(TARGET_BOARD_PLATFORM)),)
+  PRODUCT_PROPERTY_OVERRIDES += vendor.usb.controller=7000000.dwc3
+else ifeq ($(filter msm8937,$(TARGET_BOARD_PLATFORM)),)
   PRODUCT_PROPERTY_OVERRIDES += vendor.usb.controller=a600000.dwc3
 endif
 
