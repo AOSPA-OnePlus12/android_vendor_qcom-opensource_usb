@@ -28,7 +28,7 @@
 #
 
 # Changes from Qualcomm Innovation Center are provided under the following license:
-# Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 # SPDX-License-Identifier: BSD-3-Clause-Clear
 #
 
@@ -58,7 +58,7 @@ if [ "$(getprop ro.build.type)" != "user" ]; then
     else
 	  case "$(getprop ro.baseband)" in
 	      "apq")
-		if [ "$target" == "niobe" ] || [ "$target" == "anorak61" ]; then
+		if [ "$target" == "niobe" ] || [ "$target" == "anorak61" ] || [ "$target" == "neo61" ]; then
 			setprop persist.vendor.usb.config diag,qdss,adb
 		else
 			setprop persist.vendor.usb.config diag,adb
