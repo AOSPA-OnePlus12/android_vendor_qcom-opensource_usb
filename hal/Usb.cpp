@@ -355,20 +355,16 @@ static Status getCurrentRoleHelper(const std::string &portName, bool connected,
   if (!connected)
     return Status::SUCCESS;
 
-  if (currentRole.getTag() == PortRole::mode || currentRole.getTag() == PortRole::POWER_ROLE) {
+  if (currentRole.getTag() == PortRole::mode) {
     if (getAccessoryConnected(portName, accessory) != Status::SUCCESS) {
       return Status::ERROR;
     }
     if (accessory == "analog_audio") {
-        if (currentRole.getTag() == PortRole::POWER_ROLE) {
-            currentRole.set<PortRole::POWER_ROLE>(PortPowerRole::SINK);
-        } else {
-            currentRole.set<PortRole::mode>(PortMode::AUDIO_ACCESSORY);
-        }
-        return Status::SUCCESS;
-    } else if (accessory == "debug" && currentRole.getTag() == PortRole::mode) {
-        currentRole.set<PortRole::mode>(PortMode::DEBUG_ACCESSORY);
-        return Status::SUCCESS;
+      currentRole.set<PortRole::mode>(PortMode::AUDIO_ACCESSORY);
+      return Status::SUCCESS;
+    } else if (accessory == "debug") {
+      currentRole.set<PortRole::mode>(PortMode::DEBUG_ACCESSORY);
+      return Status::SUCCESS;
     }
   }
 
